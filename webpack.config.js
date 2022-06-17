@@ -1,7 +1,7 @@
 const path = require('path');
 
 const config = {
-    entry: './src/index.js',
+    entry: './src/react_minesweeper',
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js'
@@ -9,12 +9,21 @@ const config = {
     module: {
         rules: [
             {
-                test: /\.js$/,
-                use: 'babel-loader',
-                exclude: /node_modules/
+                test: /\.jsx?$/,
+                exclude: /(node_modules)/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/env', '@babel/react']
+                    }
+                }
             }
         ]
+    },
+    devtool: 'source-map',
+    resolve: {
+        extensions: [".js", ".jsx", "*"]
     }
-};
+}
 
 module.exports = config;
