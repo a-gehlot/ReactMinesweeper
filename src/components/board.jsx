@@ -14,6 +14,7 @@ class Board extends React.Component {
                     return (
                         <div key={idx}>
                             <Tile
+                            finished={this.props.finished}
                             tile={tile}
                             updateGame={this.props.updateGame}/>
                         </div>

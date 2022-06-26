@@ -23,7 +23,7 @@ header {
     width: 12px;
     height: 12px;
     line-height: 1em;
-    font-size: 13px;
+    /* font-size: 0; */
 }
 
 .row {
@@ -33,4 +33,21 @@ header {
 main {
     display: flex;
     justify-content: center;
+}
+
+.explored {
+    border-style: inset;
+}
+
+.explored, .flagged {
+    font-size: 13px;
+}
+
+.explored .bombed {
+    font-size: 13px;
+}
+
+h1 {
+    font-size: 15px;
+    text-align: center;
 }

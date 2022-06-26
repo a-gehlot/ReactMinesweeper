@@ -3,19 +3,37 @@ import React from "react";
 class Tile extends React.Component {
     constructor(props) {
         super(props)
+        console.log(props)
         this.checkTile = this.checkTile.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
     checkTile() {
-        if (this.props.tile.bombed) {
-            return <div className="tile bombed">💣</div>;
-        } else if (this.props.tile.explored) {
-            return <div className="tile explored">{this.props.tile.adjacentBombCount()}</div>;
-        } else if (this.props.tile.flagged) {
-            return <div className="tile flagged">🚩</div>
-        } else {
-            return <div className="tile">T</div>
+        let className = "tile";
+        let content;
+        if (this.props.tile.explored) {
+            className += " explored"
+            content = this.props.tile.adjacentBombCount()
         }
+        if (this.props.tile.flagged) {
+            className += " flagged"
+            content = "🚩"
+        }
+        if (this.props.tile.bombed) {
+            className += " bombed"
+            content = "💣"
+        }
+        if (!this.props.finished) {
+            return <div onClick={this.handleClick} className={className}>{content}</div>
+        } else {
+            return <div className={className}>{content}</div>
+
+        }
+        
+    }
+
+    handleClick(e) {
+            this.props.updateGame(this.props.tile, e.altKey);
     }
 
     render() {
