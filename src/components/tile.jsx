@@ -3,7 +3,6 @@ import React from "react";
 class Tile extends React.Component {
     constructor(props) {
         super(props)
-        console.log(props)
         this.checkTile = this.checkTile.bind(this);
         this.handleClick = this.handleClick.bind(this);
     }

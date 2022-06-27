@@ -1,17 +1,19 @@
 import React from "react";
 import * as Minesweeper from "../minesweeper"
 import Board from "./board";
+import Modal from "./modal";
 
 class Game extends React.Component {
     constructor(props) {
         super(props);
-        let board = new Minesweeper.Board(10, 8)
+        let board = new Minesweeper.Board(10, 7)
         this.state = {
             board: board,
-            finished: false
+            showModal: false
         }
     this.updateGame = this.updateGame.bind(this);
     this.checkWinStatus = this.checkWinStatus.bind(this)
+    this.restartGame = this.restartGame.bind(this)
     }
 
     updateGame(tile, flag) {
@@ -23,11 +25,20 @@ class Game extends React.Component {
 
         this.setState({
             board: this.state.board,
-            finished: this.checkWinStatus() ? true : false
+            showModal: this.checkWinStatus() ? true : false
+        })
+    }
+
+    restartGame() {
+        let board = new Minesweeper.Board(10, 7);
+        this.setState({
+            board: board,
+            showModal: false
         })
     }
 
     checkWinStatus() {
+        // remove !
         if (this.state.board.won()) {
             return "You have won!"
         } else if (this.state.board.lost()) {
@@ -38,12 +49,15 @@ class Game extends React.Component {
     }
 
     render() {
-        let winOrLose = this.checkWinStatus()
+        this.checkWinStatus()
         return(
             <div>
-                <h1 className="endText">{winOrLose}</h1>
+                <Modal 
+                show={this.state.showModal}
+                restartGame={this.restartGame}
+                />
                 <Board
-                finished={this.state.finished} 
+                finished={this.state.showModal} 
                 board={this.state.board}
                 updateGame={this.updateGame}
                 />
