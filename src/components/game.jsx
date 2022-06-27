@@ -38,7 +38,6 @@ class Game extends React.Component {
     }
 
     checkWinStatus() {
-        // remove !
         if (this.state.board.won()) {
             return "You have won!"
         } else if (this.state.board.lost()) {
@@ -55,6 +54,7 @@ class Game extends React.Component {
                 <Modal 
                 show={this.state.showModal}
                 restartGame={this.restartGame}
+                won={this.state.board.won()}
                 />
                 <Board
                 finished={this.state.showModal} 

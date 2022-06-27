@@ -9,10 +9,15 @@ export default class Modal extends React.Component {
         if (!this.props.show) {
             return null;
         }
+        let message = this.props.won ? "You have won!" : "You have lost"
         return (
-            <article>Modal
-                <button onClick={this.props.restartGame}>Restart Game</button>
-            </article>
+            <section className="modal">
+                <article className="modal-content">
+                    <h1>{message}</h1>
+                    <button onClick={this.props.restartGame}>Restart Game</button>
+                </article>
+                <div className="modal-screen"></div>
+            </section>
         )
     }
 }
