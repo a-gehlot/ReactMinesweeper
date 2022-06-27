@@ -18,7 +18,7 @@ class Tile extends React.Component {
             className += " flagged"
             content = "🚩"
         }
-        if (this.props.tile.bombed) {
+        else if (this.props.tile.bombed) {
             className += " bombed"
             content = "💣"
         }
