@@ -14,7 +14,8 @@ node_modules/
 jspm_packages/
 
 # Distribution directories
-dist/
+dist/bundle.js
+dist/bundle.js.map
 
 # Typescript v1 declaration files
 typings/
